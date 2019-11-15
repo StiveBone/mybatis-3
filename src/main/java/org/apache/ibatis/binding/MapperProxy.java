@@ -27,6 +27,8 @@ import org.apache.ibatis.reflection.ExceptionUtil;
 import org.apache.ibatis.session.SqlSession;
 
 /**
+ * 生成Dao接口动态代理实现
+ *
  * @author Clinton Begin
  * @author Eduardo Macarron
  */

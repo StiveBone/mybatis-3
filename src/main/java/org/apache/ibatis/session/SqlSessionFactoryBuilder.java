@@ -26,6 +26,8 @@ import org.apache.ibatis.executor.ErrorContext;
 import org.apache.ibatis.session.defaults.DefaultSqlSessionFactory;
 
 /**
+ * mybatis入口
+ *
  * Builds {@link SqlSession} instances.
  *
  * @author Clinton Begin

@@ -27,6 +27,8 @@ import java.util.Map;
 import java.util.Set;
 
 /**
+ * mapper注册注册接口的代理类
+ *
  * @author Clinton Begin
  * @author Eduardo Macarron
  * @author Lasse Voss

@@ -18,6 +18,8 @@ package org.apache.ibatis.parsing;
 import java.util.Properties;
 
 /**
+ * 配置文件占位符解析
+ *
  * @author Clinton Begin
  * @author Kazuki Shimizu
  */

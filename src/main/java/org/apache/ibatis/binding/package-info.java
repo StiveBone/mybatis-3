@@ -15,5 +15,7 @@
  */
 /**
  * Bings mapper interfaces with mapped statements
+ *
+ * Dao接口与Mapper文件Statement绑定
  */
 package org.apache.ibatis.binding;

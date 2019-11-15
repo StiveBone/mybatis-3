@@ -34,6 +34,8 @@ import org.apache.ibatis.scripting.LanguageDriver;
 import org.apache.ibatis.session.Configuration;
 
 /**
+ * statement 创建器
+ *
  * @author Clinton Begin
  */
 public class XMLStatementBuilder extends BaseBuilder {
@@ -53,6 +55,9 @@ public class XMLStatementBuilder extends BaseBuilder {
     this.requiredDatabaseId = databaseId;
   }
 
+    /**
+     * 解析statement
+     */
   public void parseStatementNode() {
     String id = context.getStringAttribute("id");
     String databaseId = context.getStringAttribute("databaseId");
@@ -91,7 +96,7 @@ public class XMLStatementBuilder extends BaseBuilder {
     processSelectKeyNodes(id, parameterTypeClass, langDriver);
     
     // Parse the SQL (pre: <selectKey> and <include> were parsed and removed)
-    SqlSource sqlSource = langDriver.createSqlSource(configuration, context, parameterTypeClass);
+    SqlSource sqlSource = langDriver.createSqlSource(configuration, context, parameterTypeClass); //sql语句
     String resultSets = context.getStringAttribute("resultSets");
     String keyProperty = context.getStringAttribute("keyProperty");
     String keyColumn = context.getStringAttribute("keyColumn");

@@ -49,6 +49,8 @@ import org.apache.ibatis.type.JdbcType;
 import org.apache.ibatis.type.TypeHandler;
 
 /**
+ * mapping文件解析
+ *
  * @author Clinton Begin
  * @author Kazuki Shimizu
  */
@@ -107,22 +109,27 @@ public class XMLMapperBuilder extends BaseBuilder {
 
   private void configurationElement(XNode context) {
     try {
-      String namespace = context.getStringAttribute("namespace");
+      String namespace = context.getStringAttribute("namespace"); //解析namespace
       if (namespace == null || namespace.equals("")) {
         throw new BuilderException("Mapper's namespace cannot be empty");
       }
       builderAssistant.setCurrentNamespace(namespace);
-      cacheRefElement(context.evalNode("cache-ref"));
-      cacheElement(context.evalNode("cache"));
-      parameterMapElement(context.evalNodes("/mapper/parameterMap"));
-      resultMapElements(context.evalNodes("/mapper/resultMap"));
-      sqlElement(context.evalNodes("/mapper/sql"));
-      buildStatementFromContext(context.evalNodes("select|insert|update|delete"));
+      cacheRefElement(context.evalNode("cache-ref")); //ceche-ref
+      cacheElement(context.evalNode("cache")); //cache
+      parameterMapElement(context.evalNodes("/mapper/parameterMap")); //请求参数映射
+      resultMapElements(context.evalNodes("/mapper/resultMap")); //结果集映射
+      sqlElement(context.evalNodes("/mapper/sql")); //sql
+      buildStatementFromContext(context.evalNodes("select|insert|update|delete")); //statement
     } catch (Exception e) {
       throw new BuilderException("Error parsing Mapper XML. The XML location is '" + resource + "'. Cause: " + e, e);
     }
   }
 
+    /**
+     * 解析statement
+     *
+     * @param list 节点列表
+     */
   private void buildStatementFromContext(List<XNode> list) {
     if (configuration.getDatabaseId() != null) {
       buildStatementFromContext(list, configuration.getDatabaseId());
