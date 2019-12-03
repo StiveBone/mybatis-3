@@ -89,7 +89,7 @@ public class XMLStatementBuilder extends BaseBuilder {
     boolean resultOrdered = context.getBooleanAttribute("resultOrdered", false);
 
     // Include Fragments before parsing
-    XMLIncludeTransformer includeParser = new XMLIncludeTransformer(configuration, builderAssistant);
+    XMLIncludeTransformer includeParser = new XMLIncludeTransformer(configuration, builderAssistant); //<include/>标签处理
     includeParser.applyIncludes(context.getNode());
 
     // Parse selectKey after includes and remove them.

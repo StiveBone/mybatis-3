@@ -93,7 +93,7 @@ public class XMLMapperBuilder extends BaseBuilder {
 
   public void parse() {
     if (!configuration.isResourceLoaded(resource)) {
-      configurationElement(parser.evalNode("/mapper"));
+      configurationElement(parser.evalNode("/mapper")); //开始解析mapper
       configuration.addLoadedResource(resource);
       bindMapperForNamespace();
     }
@@ -220,6 +220,11 @@ public class XMLMapperBuilder extends BaseBuilder {
     }
   }
 
+  /**
+   * 请求参数映射
+   *
+   * @param list
+   */
   private void parameterMapElement(List<XNode> list) {
     for (XNode parameterMapNode : list) {
       String id = parameterMapNode.getStringAttribute("id");
@@ -280,8 +285,8 @@ public class XMLMapperBuilder extends BaseBuilder {
     List<XNode> resultChildren = resultMapNode.getChildren();
     for (XNode resultChild : resultChildren) {
       if ("constructor".equals(resultChild.getName())) {
-        processConstructorElement(resultChild, typeClass, resultMappings);
-      } else if ("discriminator".equals(resultChild.getName())) {
+        processConstructorElement(resultChild, typeClass, resultMappings); //构造器
+      } else if ("discriminator".equals(resultChild.getName())) { //鉴别器
         discriminator = processDiscriminatorElement(resultChild, typeClass, resultMappings);
       } else {
         List<ResultFlag> flags = new ArrayList<>();
@@ -380,6 +385,15 @@ public class XMLMapperBuilder extends BaseBuilder {
     return true;
   }
 
+  /**
+   * 解析<resultMap/>
+   *
+   * @param context
+   * @param resultType
+   * @param flags
+   * @return
+   * @throws Exception
+   */
   private ResultMapping buildResultMappingFromContext(XNode context, Class<?> resultType, List<ResultFlag> flags) throws Exception {
     String property;
     if (flags.contains(ResultFlag.CONSTRUCTOR)) {

@@ -26,6 +26,9 @@ import org.apache.ibatis.type.TypeHandler;
 import org.apache.ibatis.type.TypeHandlerRegistry;
 
 /**
+ * 结果映射实体
+ * <result property="firstName" column="firstName"/>  一行一个实体
+ *
  * @author Clinton Begin
  */
 public class ResultMapping {

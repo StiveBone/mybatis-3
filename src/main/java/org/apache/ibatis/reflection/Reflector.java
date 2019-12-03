@@ -39,6 +39,8 @@ import org.apache.ibatis.reflection.invoker.SetFieldInvoker;
 import org.apache.ibatis.reflection.property.PropertyNamer;
 
 /**
+ * 反射器 缓存类信息
+ *
  * This class represents a cached set of class definition information that
  * allows for easy mapping between property names and getter/setter methods.
  *
@@ -46,16 +48,16 @@ import org.apache.ibatis.reflection.property.PropertyNamer;
  */
 public class Reflector {
 
-  private final Class<?> type;
-  private final String[] readablePropertyNames;
-  private final String[] writeablePropertyNames;
-  private final Map<String, Invoker> setMethods = new HashMap<>();
-  private final Map<String, Invoker> getMethods = new HashMap<>();
-  private final Map<String, Class<?>> setTypes = new HashMap<>();
-  private final Map<String, Class<?>> getTypes = new HashMap<>();
-  private Constructor<?> defaultConstructor;
+  private final Class<?> type; //当前类型
+  private final String[] readablePropertyNames; //可读字段名称
+  private final String[] writeablePropertyNames; //可写字段名称
+  private final Map<String, Invoker> setMethods = new HashMap<>(); //set方法集合
+  private final Map<String, Invoker> getMethods = new HashMap<>(); //get方法集合
+  private final Map<String, Class<?>> setTypes = new HashMap<>(); //set字段的类型
+  private final Map<String, Class<?>> getTypes = new HashMap<>(); //get字段的类型
+  private Constructor<?> defaultConstructor; //构建器
 
-  private Map<String, String> caseInsensitivePropertyMap = new HashMap<>();
+  private Map<String, String> caseInsensitivePropertyMap = new HashMap<>(); //不区分大小写
 
   public Reflector(Class<?> clazz) {
     type = clazz;

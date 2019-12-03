@@ -180,7 +180,7 @@ public class MapperBuilderAssistant extends BaseBuilder {
       Discriminator discriminator,
       List<ResultMapping> resultMappings,
       Boolean autoMapping) {
-    id = applyCurrentNamespace(id, false);
+    id = applyCurrentNamespace(id, false); //加上namespace
     extend = applyCurrentNamespace(extend, true);
 
     if (extend != null) {
@@ -373,7 +373,7 @@ public class MapperBuilderAssistant extends BaseBuilder {
       String resultSet,
       String foreignColumn,
       boolean lazy) {
-    Class<?> javaTypeClass = resolveResultJavaType(resultType, property, javaType);
+    Class<?> javaTypeClass = resolveResultJavaType(resultType, property, javaType); //反射字段类型
     TypeHandler<?> typeHandlerInstance = resolveTypeHandler(javaTypeClass, typeHandler);
     List<ResultMapping> composites = parseCompositeColumnName(column);
     return new ResultMapping.Builder(configuration, property, column, javaTypeClass)

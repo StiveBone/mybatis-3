@@ -32,6 +32,8 @@ import org.apache.ibatis.reflection.ParamNameUtil;
 import org.apache.ibatis.session.Configuration;
 
 /**
+ * <resultMap id="personMap" type="Person"> 对象
+ *
  * @author Clinton Begin
  */
 public class ResultMap {
